@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Style Countdown Timer</title>
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+        background-color: #000;
+        color: #0f0;
+    }
+    #countdown {
+        font-size: 48px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<h1>Countdown to 7am, May 1st, 2024</h1>
+<div id="countdown"></div>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("May 1, 2024 07:00:00").getTime();
+
+// Update the countdown every second
+var x = setInterval(function() {
+
+  // Get the current date and time
+  var now = new Date().getTime();
+    
+  // Calculate the distance between now and the countdown date
+  var distance = countDownDate - now;
+    
+  // Calculate days, hours, minutes, and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Format the time into a digital style display
+  var time = formatTime(days) + "d " + formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
+    
+  // Display the countdown
+  document.getElementById("countdown").innerHTML = time;
+    
+  // If the countdown is over, display a message
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "EXPIRED";
+  }
+}, 1000);
+
+// Function to format time with leading zeros
+function formatTime(time) {
+  return time < 10 ? "0" + time : time;
+}
+</script>
+
+</body>
+</html>
